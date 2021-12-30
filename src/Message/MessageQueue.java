@@ -71,6 +71,10 @@ public class MessageQueue {
         channels.add(channel);
     }
 
+    public static void removeChannel(String nickname){
+        channels.removeIf(channel -> channel.getName().equals(nickname));
+    }
+
     public int getSize() {
         return queue.size();
     }

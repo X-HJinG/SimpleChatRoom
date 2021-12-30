@@ -1,6 +1,7 @@
 package Client;
 
 import Client.Client;
+import Message.Message;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +45,10 @@ public class ClientGUI extends JFrame{
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
+                Message exitSignal = new Message();
+                exitSignal.setType(Message.TYPE.EXIT);
+                exitSignal.setFrom(loginUser.nickName);
+                loginUser.sendMsg(exitSignal);
                 System.exit(0);
             }
         });

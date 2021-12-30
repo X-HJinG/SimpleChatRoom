@@ -11,7 +11,7 @@ public class Message implements Serializable {
     TYPE type;
 
     public enum TYPE{
-        SYS,CLIENT,NOTIFY
+        SYS,CLIENT,NOTIFY,EXIT
     }
 
     public Message() {

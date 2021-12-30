@@ -42,6 +42,10 @@ public class Server extends ServerSocket implements Runnable {
         reNew();
     }
 
+    public static void removeClient(String nickName){
+        clients.remove(nickName);
+    }
+
     public static void reNew() throws InterruptedException {
         StringBuilder builder = new StringBuilder();
         for (String s : clients.keySet()) {

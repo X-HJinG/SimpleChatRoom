@@ -11,8 +11,9 @@ public class ServerMain {
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.submit(server);
         Scanner scanner = new Scanner(System.in);
+        System.out.print("Send a notify : ");
         while (scanner.hasNext()) {
-            System.out.print("请输入通知:");
+            System.out.print("Send a notify : ");
             String msg = scanner.next();
             Server.sendNotifyMsg(msg);
         }

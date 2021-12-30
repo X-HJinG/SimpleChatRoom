@@ -32,7 +32,12 @@ public class Client implements Runnable {
         try {
             while (goon) {
                 Message msg = (Message) in.readObject();
-                sendToMQ(msg);
+                if (msg.getType() == Message.TYPE.EXIT) {
+                    String nickName = msg.getFrom();
+                    MessageQueue.removeChannel(nickName);
+                    Server.removeClient(nickName);
+                    Server.reNew();
+                } else sendToMQ(msg);
                 /*
                     以下是非消息队列的版本的
                     if(msg.getTo()==null){
@@ -44,7 +49,8 @@ public class Client implements Runnable {
                     }
                 */
             }
-        } catch (IOException | ClassNotFoundException | InterruptedException e) {
+        } catch (IOException ignored) {
+        } catch (ClassNotFoundException | InterruptedException e) {
             e.printStackTrace();
         }
     }

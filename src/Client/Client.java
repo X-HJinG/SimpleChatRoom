@@ -111,10 +111,18 @@ public class Client extends JFrame implements Runnable {
                         break;
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-//                System.out.println("与服务器已断开");
+                System.out.println("The connection has been disconnected.");
                 break;
             }
+        }
+    }
+
+    public void sendMsg(Object obj) {
+        try {
+            out.writeObject(obj);
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
