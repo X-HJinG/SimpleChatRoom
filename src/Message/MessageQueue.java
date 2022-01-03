@@ -82,7 +82,9 @@ public class MessageQueue {
     public static void produce() throws IOException, InterruptedException {
         Message msg = take();
         for (Channel channel : channels) {
-            channel.offer(msg);
+            String name = channel.getName();
+            if (msg.getTo()==null||msg.getFrom().equals(name) || msg.getTo().equals(name))
+                channel.offer(msg);
         }
     }
 

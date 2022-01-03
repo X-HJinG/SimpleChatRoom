@@ -40,10 +40,8 @@ public class Channel {
     public void consume() throws IOException {
         while (!list.isEmpty()) {
             Message msg = list.poll();
-            if (msg.getTo()==null||msg.getFrom().equals(name) || msg.getTo().equals(name)) {
-                out.writeObject(msg);
-//                out.flush();
-            }
+            out.writeObject(msg);
+            out.flush();
         }
     }
 }
