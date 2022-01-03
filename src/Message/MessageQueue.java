@@ -9,7 +9,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class MessageQueue {
     private static final LinkedBlockingQueue<Message> queue = new LinkedBlockingQueue<>();
     public static CopyOnWriteArrayList<Channel> channels = new CopyOnWriteArrayList<>();
-    public Channel channel;
     public boolean goon =true;
 
     public MessageQueue() {
@@ -73,10 +72,6 @@ public class MessageQueue {
 
     public static void removeChannel(String nickname){
         channels.removeIf(channel -> channel.getName().equals(nickname));
-    }
-
-    public int getSize() {
-        return queue.size();
     }
 
     public static void produce() throws IOException, InterruptedException {
